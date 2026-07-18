@@ -13,6 +13,16 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Export model to ONNX
+        run: |
+          pip install --quiet torch torchvision onnx --index-url https://download.pytorch.org/whl/cpu
+          python export_model.py
+
       - name: Build optimized image
         run: docker build -f Dockerfile.optimized -t edge-inference:optimized .
 
