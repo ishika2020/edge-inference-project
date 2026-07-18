@@ -1,0 +1,11 @@
+__pycache__
+*.pyc
+.git
+.github
+benchmarks/results.json
+test_image.jpg
+server.log
+server.pid
+*.md
+venv/
+.venv/

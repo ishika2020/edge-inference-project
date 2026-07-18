@@ -1,0 +1,37 @@
+name: build-benchmark-optimized
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Build optimized image
+        run: docker build -f Dockerfile.optimized -t edge-inference:optimized .
+
+      - name: Run benchmarks
+        run: |
+          python3 -m pip install --quiet requests
+          python3 benchmarks/measure.py --image edge-inference:optimized --output results.json
+
+      - name: Enforce size/memory/cold-start budget
+        run: |
+          python3 benchmarks/check_budget.py \
+            --results results.json \
+            --max-size-mb 300 \
+            --max-mem-mb 150 \
+            --max-cold-start-s 10
+
+      - name: Upload benchmark results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: results.json
