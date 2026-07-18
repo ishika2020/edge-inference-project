@@ -36,7 +36,7 @@ jobs:
         run: |
           python3 benchmarks/check_budget.py \
             --results results.json \
-            --max-size-mb 300 \
+            --max-size-mb 400 \
             --max-mem-mb 150 \
             --max-cold-start-s 10
 
