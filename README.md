@@ -40,8 +40,8 @@ python benchmarks/check_budget.py --results results.json --max-size-mb 300 --max
 | Metric | Baseline | Optimized | Improvement |
 |---|---|---|---|
 | Image size | 705.69  MB | 122.92 MB | ~82.6 % |
-| Idle memory | 79.35 MB | 81.3 MB | no change % |
-| Cold start | 1.51 s | 2.19 s | slightly slower % |
+| Idle memory | 79.35 MB | 81.3 MB | no change  |
+| Cold start | 1.51 s | 2.19 s | slightly slower  |
 
 > Fill this table in with your real numbers after running the setup steps above.
 
