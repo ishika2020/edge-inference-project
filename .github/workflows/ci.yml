@@ -20,7 +20,8 @@ jobs:
 
       - name: Export model to ONNX
         run: |
-          pip install --quiet torch torchvision onnx --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet onnx
           python export_model.py
 
       - name: Build optimized image
